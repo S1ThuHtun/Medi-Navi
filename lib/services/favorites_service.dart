@@ -10,8 +10,6 @@ class FavoritesService {
     final prefs = await SharedPreferences.getInstance();
     final favoritesJson = prefs.getStringList(_favoritesKey) ?? [];
 
-    print('📖 Loading favorites: ${favoritesJson.length} items');
-
     return favoritesJson.map((jsonString) {
       final json = jsonDecode(jsonString) as Map<String, dynamic>;
       return MedicalService.fromJson(json);
@@ -36,10 +34,8 @@ class FavoritesService {
           .map((s) => jsonEncode(_serviceToJson(s)))
           .toList();
       await prefs.setStringList(_favoritesKey, favoritesJson);
-      print('✅ Favorite added: ${service.name} (ID: ${service.id})');
-      print('📊 Total favorites: ${favorites.length}');
     } else {
-      print('⚠️ Service already in favorites: ${service.name}');
+      print('Service already in favorites: ${service.name}');
     }
   }
 

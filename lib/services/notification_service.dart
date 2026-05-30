@@ -12,7 +12,6 @@ import '../models/reminder.dart';
 @pragma('vm:entry-point')
 void notificationTapBackground(NotificationResponse response) {
   // Background tap - just log it, navigation happens when app opens
-  print('Background notification tapped: ${response.payload}');
 }
 
 class NotificationService {
@@ -48,31 +47,18 @@ class NotificationService {
       iOS: iosSettings,
     );
 
-    // Register callback for when notification is received (even in background on iOS)
-    // This allows the notification sound to play even when screen is locked
-
     await _notifications.initialize(
       initSettings,
       onDidReceiveNotificationResponse: _onNotificationTap,
       onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
     );
 
-    // Setup notification stream to handle foreground notifications
-    // This allows us to show the notification screen when app is in foreground
     _setupForegroundNotificationHandler();
 
     _initialized = true;
   }
 
-  // Setup handler for when notification arrives while app is in foreground
   void _setupForegroundNotificationHandler() {
-    // Note: flutter_local_notifications doesn't provide a direct way to detect
-    // when a scheduled notification fires in the foreground on iOS/Android.
-    // The notification will appear in the notification shade, and the user must tap it.
-    // This is by design for both iOS and Android - apps cannot auto-open when locked.
-
-    // For Android, we can use fullScreenIntent which will show on lock screen
-    // For iOS, the notification must be tapped to open the app
     print('✅ Foreground notification handler setup complete');
     print(
       '⚠️ Note: On iOS/Android, user must tap notification to open app when screen is locked',
@@ -80,8 +66,6 @@ class NotificationService {
   }
 
   void _onNotificationTap(NotificationResponse response) {
-    print('Notification tapped: ${response.payload}');
-
     if (response.payload != null) {
       final parts = response.payload!.split('|');
       if (parts.isNotEmpty) {
@@ -117,7 +101,6 @@ class NotificationService {
       // Try to play custom alarm sound from assets
       try {
         await _audioPlayer.play(AssetSource('sounds/alarm.mp3'));
-        print('🔔 Playing custom alarm sound from assets');
       } catch (assetError) {
         // Fallback: Try to play a simple tone from a free online source
         // This URL provides a simple notification beep sound

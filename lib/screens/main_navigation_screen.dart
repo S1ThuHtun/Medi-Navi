@@ -22,7 +22,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
   int _favoritesRefreshKey = 0;
 
-  // Create screens once to preserve state across rebuilds
   late List<Widget> _screens;
 
   @override
@@ -32,7 +31,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     _initializeAlarmMonitor();
   }
 
-  // Load reminders and schedule notifications
   Future<void> _initializeAlarmMonitor() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -47,8 +45,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         for (final reminder in reminders) {
           NotificationService().cacheReminder(reminder.id, reminder);
         }
-
-        print('✅ Loaded ${reminders.length} reminders in MainNavigationScreen');
       }
 
       // Schedule all reminders as local notifications (works even when screen is locked)
@@ -56,11 +52,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
       // Start foreground alarm monitor (auto-shows notification screen when app is open)
       ForegroundAlarmMonitor().startMonitoring(reminders);
-
-      print('✅ BackgroundAlarmService scheduled ${reminders.length} reminders');
-      print(
-        '✅ ForegroundAlarmMonitor started with ${reminders.length} reminders',
-      );
     } catch (e) {
       print('⚠️ Failed to initialize BackgroundAlarmService: $e');
     }

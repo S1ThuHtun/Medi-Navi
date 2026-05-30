@@ -427,6 +427,7 @@ class _HomeScreenState extends State<HomeScreen>
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'chatbot_fab',
         elevation: 20,
         shape: const CircleBorder(),
         onPressed: () async {

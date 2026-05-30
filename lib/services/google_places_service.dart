@@ -80,15 +80,15 @@ class GooglePlacesService {
 
         if (data['status'] == 'OK') {
           final result = data['result'];
-          print('Retrieved details:');
-          print('   - Name: ${result['name']}');
-          print('   - Phone: ${result['formatted_phone_number'] ?? 'N/A'}');
-          print('   - Rating: ${result['rating'] ?? 'N/A'}');
-          print('   - Reviews: ${result['user_ratings_total'] ?? 0}');
-          print('   - Website: ${result['website'] ?? 'N/A'}');
-          print(
-            '   - Wheelchair accessible: ${result['wheelchair_accessible_entrance'] ?? 'Unknown'}',
-          );
+          // print('Retrieved details:');
+          // print('   - Name: ${result['name']}');
+          // print('   - Phone: ${result['formatted_phone_number'] ?? 'N/A'}');
+          // print('   - Rating: ${result['rating'] ?? 'N/A'}');
+          // print('   - Reviews: ${result['user_ratings_total'] ?? 0}');
+          // print('   - Website: ${result['website'] ?? 'N/A'}');
+          // print(
+          //   '   - Wheelchair accessible: ${result['wheelchair_accessible_entrance'] ?? 'Unknown'}',
+          // );
           return result;
         } else {
           print('Place details error: ${data['status']}');
@@ -115,22 +115,15 @@ class GooglePlacesService {
         'https://maps.googleapis.com/maps/api/directions/json?origin=$startLat,$startLng&destination=$endLat,$endLng&mode=$mode&key=$apiKey',
       );
 
-      print('🗺️ Fetching directions with mode: $mode');
-      print('URL: $url');
-
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
 
-        print('Response status: ${data['status']}');
-
         if (data['status'] == 'OK') {
-          print('Routes found: ${data['routes']?.length ?? 0}');
           return data;
         } else {
           // Return the data even on error so we can show proper error messages
-          print('API Error: ${data['status']}');
           if (data['error_message'] != null) {
             print('Error message: ${data['error_message']}');
           }
@@ -138,7 +131,6 @@ class GooglePlacesService {
         }
       }
 
-      print('HTTP Error: ${response.statusCode}');
       return null;
     } catch (e) {
       print('Exception fetching directions: $e');

@@ -132,12 +132,6 @@ class _MapScreenState extends State<MapScreen> {
       _showDirections = true;
     });
 
-    print('🚗 Getting directions for mode: $_selectedTravelMode');
-    print(
-      '📍 From: ${widget.currentPosition.latitude}, ${widget.currentPosition.longitude}',
-    );
-    print('📍 To: ${widget.service.latitude}, ${widget.service.longitude}');
-
     final directions = await _placesService.getDirections(
       startLat: widget.currentPosition.latitude,
       startLng: widget.currentPosition.longitude,
@@ -146,35 +140,22 @@ class _MapScreenState extends State<MapScreen> {
       mode: _selectedTravelMode,
     );
 
-    print(
-      '📦 Directions response: ${directions != null ? 'Received' : 'Null'}',
-    );
-    if (directions != null) {
-      print('📊 Status: ${directions['status']}');
-      print('📊 Routes: ${directions['routes']?.length ?? 0}');
-    }
-
     if (directions != null &&
         directions['status'] == 'OK' &&
         directions['routes'] != null &&
         directions['routes'].isNotEmpty) {
-      print('✅ Valid route found, decoding polyline...');
-
       try {
         final polylinePoints =
             directions['routes'][0]['overview_polyline']['points'];
         final decodedPoints = _decodePolyline(polylinePoints);
 
-        print('✅ Decoded ${decodedPoints.length} points');
-
         // Debug: Log transit details if transit mode
         if (_selectedTravelMode == 'transit' &&
             directions['routes'][0]['legs'] != null) {
           final leg = directions['routes'][0]['legs'][0];
-          print('🚌 Transit Mode - Steps: ${leg['steps']?.length ?? 0}');
+
           if (leg['steps'] != null) {
             for (var step in leg['steps']) {
-              print('  - Travel mode: ${step['travel_mode']}');
               if (step['travel_mode'] == 'TRANSIT' &&
                   step['transit_details'] != null) {
                 final transit = step['transit_details'];
@@ -195,10 +176,7 @@ class _MapScreenState extends State<MapScreen> {
         });
 
         _centerMapOnRoute();
-
-        print('✅ Route displayed successfully');
       } catch (e) {
-        print('❌ Error decoding polyline: $e');
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -210,9 +188,6 @@ class _MapScreenState extends State<MapScreen> {
         }
       }
     } else {
-      // Handle errors
-      print('⚠️ No valid route found');
-
       if (mounted) {
         String errorMessage = 'Unable to get directions';
         Color errorColor = Colors.orange;
@@ -221,7 +196,6 @@ class _MapScreenState extends State<MapScreen> {
           final status = directions['status'];
           final apiError = directions['error_message'];
 
-          print('⚠️ API Status: $status');
           if (apiError != null) print('⚠️ API Error: $apiError');
 
           switch (status) {
@@ -893,10 +867,6 @@ class _MapScreenState extends State<MapScreen> {
                                   }
                                   return;
                                 }
-
-                                print('Original phone: $phoneNumber');
-                                print('Cleaned phone: $cleanedNumber');
-
                                 // Use url_launcher for iOS, FlutterPhoneDirectCaller for Android
                                 bool callSucceeded = false;
 
@@ -909,10 +879,6 @@ class _MapScreenState extends State<MapScreen> {
                                     await launchUrl(uri);
                                     callSucceeded = true;
                                   } else {
-                                    // On iOS simulator, tel: scheme won't work
-                                    print(
-                                      '⚠️ Cannot launch tel: scheme (likely on simulator)',
-                                    );
                                     if (mounted) {
                                       ScaffoldMessenger.of(
                                         context,
@@ -934,8 +900,6 @@ class _MapScreenState extends State<MapScreen> {
                                         cleanedNumber,
                                       );
 
-                                  print('Call result: $result');
-
                                   if (result == true) {
                                     callSucceeded = true;
                                   } else {
@@ -946,7 +910,7 @@ class _MapScreenState extends State<MapScreen> {
                                       callSucceeded = true;
                                     } else {
                                       print(
-                                        '⚠️ Cannot launch tel: scheme (likely on emulator)',
+                                        'Cannot launch tel: scheme (likely on emulator)',
                                       );
                                       if (mounted) {
                                         ScaffoldMessenger.of(
@@ -987,7 +951,6 @@ class _MapScreenState extends State<MapScreen> {
                                   }
                                 }
                               } catch (e) {
-                                print('Phone call error: $e');
                                 if (mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -1050,7 +1013,6 @@ class _MapScreenState extends State<MapScreen> {
                                 );
                               }
                             } catch (e) {
-                              print('Error opening Google Maps: $e');
                               if (mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -1166,7 +1128,6 @@ class _MapScreenState extends State<MapScreen> {
           );
         }
       } catch (e) {
-        print('Error opening Google Maps: $e');
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -1238,14 +1199,9 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Widget _buildTransitDetails() {
-    print('🚌 _buildTransitDetails called');
-    print('   _directionsData: ${_directionsData != null}');
-    print('   _selectedTravelMode: $_selectedTravelMode');
-
     if (_directionsData == null ||
         _directionsData!['routes'] == null ||
         _directionsData!['routes'].isEmpty) {
-      print('   ❌ No directions data available');
       return const SizedBox.shrink();
     }
 
@@ -1253,17 +1209,12 @@ class _MapScreenState extends State<MapScreen> {
     final leg = route['legs'][0];
     final steps = leg['steps'] as List<dynamic>? ?? [];
 
-    print('   📊 Total steps: ${steps.length}');
-
     // Filter only transit steps
     final transitSteps = steps
         .where((step) => step['travel_mode'] == 'TRANSIT')
         .toList();
 
-    print('   🚍 Transit steps found: ${transitSteps.length}');
-
     if (transitSteps.isEmpty) {
-      print('   ⚠️ No transit steps, showing walking-only message');
       return Padding(
         padding: const EdgeInsets.only(top: 12, bottom: 8),
         child: Container(

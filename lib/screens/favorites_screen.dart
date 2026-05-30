@@ -40,8 +40,6 @@ class _FavoritesScreenState extends State<FavoritesScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      // Reload favorites when app comes to foreground or tab is switched
-      print('🔄 App resumed, reloading favorites...');
       _loadFavorites();
     }
   }
@@ -49,8 +47,6 @@ class _FavoritesScreenState extends State<FavoritesScreen>
   @override
   void didUpdateWidget(FavoritesScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Reload when widget is updated
-    print('🔄 Widget updated, reloading favorites...');
     _loadFavorites();
   }
 
@@ -61,7 +57,6 @@ class _FavoritesScreenState extends State<FavoritesScreen>
         setState(() {
           _currentPosition = position;
         });
-        // Reload favorites after getting location to recalculate distances
         _loadFavorites();
       }
     } catch (e) {
@@ -70,14 +65,11 @@ class _FavoritesScreenState extends State<FavoritesScreen>
   }
 
   Future<void> _loadFavorites() async {
-    print('🔄 FavoritesScreen: Loading favorites...');
     if (mounted) {
       setState(() => _isLoading = true);
     }
     final favorites = await FavoritesService.getFavorites();
-    print('✅ FavoritesScreen: Loaded ${favorites.length} favorites');
 
-    // Recalculate distances based on current position
     List<MedicalService> updatedFavorites = favorites;
     if (_currentPosition != null) {
       updatedFavorites = favorites.map((service) {
@@ -102,7 +94,6 @@ class _FavoritesScreenState extends State<FavoritesScreen>
     }
   }
 
-  // Calculate distance using Haversine formula
   double _calculateDistance(
     double lat1,
     double lon1,
@@ -130,7 +121,6 @@ class _FavoritesScreenState extends State<FavoritesScreen>
 
   // Public method to reload favorites from external calls
   void reloadFavorites() {
-    print('🔄 External reload requested');
     _loadFavorites();
   }
 
