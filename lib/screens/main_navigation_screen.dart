@@ -33,6 +33,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   Future<void> _initializeAlarmMonitor() async {
     try {
+      await NotificationService().initialize();
+
       final prefs = await SharedPreferences.getInstance();
       final remindersJson = prefs.getString('reminders');
 
