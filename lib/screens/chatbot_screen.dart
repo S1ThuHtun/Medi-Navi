@@ -820,7 +820,7 @@ Keep total response under 150 words but ALWAYS include emergency contacts.''';
 
         final response = await http.post(
           Uri.parse(
-            'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+            'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
           ),
           headers: {
             'Content-Type': 'application/json',
@@ -1607,10 +1607,10 @@ class ColorfulChatBubble extends StatelessWidget {
             ),
             child: Row(
               children: [
-                if (icon != null) ...[
-                  Icon(icon, color: headerColor, size: 20),
-                  const SizedBox(width: 8),
-                ],
+                // if (icon != null) ...[
+                //   Icon(icon, color: headerColor, size: 20),
+                //   const SizedBox(width: 8),
+                // ],
                 Expanded(
                   child: RichText(
                     text: TextSpan(
