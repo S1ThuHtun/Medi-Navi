@@ -161,16 +161,14 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           children: [
             Icon(Icons.refresh_rounded, color: primaryGreen),
             const SizedBox(width: 12),
-            const Text('Clear Chat'),
+            Text(l10n.clearChat),
           ],
         ),
-        content: const Text(
-          'Start a new conversation? Current chat will be cleared.',
-        ),
+        content: Text(l10n.clearChatMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
@@ -178,7 +176,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
               backgroundColor: primaryGreen,
               foregroundColor: Colors.white,
             ),
-            child: const Text('Clear'),
+            child: Text(l10n.clearChatConfirm),
           ),
         ],
       ),
@@ -202,7 +200,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Chat cleared. Ready for new conversation!'),
+          content: Text(l10n.chatCleared),
           backgroundColor: successGreen,
           duration: const Duration(seconds: 2),
         ),
@@ -1172,7 +1170,7 @@ Keep total response under 150 words but ALWAYS include emergency contacts.''';
           IconButton(
             icon: const Icon(Icons.delete_sweep_rounded, size: 26),
             color: Colors.white,
-            tooltip: 'Clear Chat',
+            tooltip: l10n.clearChat,
             onPressed: _startNewConversation,
           ),
           IconButton(
