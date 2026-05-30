@@ -1,0 +1,165 @@
+const Map<String, dynamic> medicalServicesData = {
+  "services": {
+    "General Services": [
+      "General Medicine",
+      "Emergency Care",
+      "Family Medicine",
+      "Preventative Medicine",
+      "Health Check-ups",
+      "Urgent Care"
+    ],
+    "Specialized Services": [
+      "Cardiology",
+      "Dermatology",
+      "Endocrinology",
+      "Gastroenterology",
+      "Hematology",
+      "Nephrology",
+      "Neurology",
+      "Obstetrics and Gynecology",
+      "Ophthalmology",
+      "Orthopedics",
+      "Pediatrics",
+      "Psychiatry",
+      "Rheumatology",
+      "Pulmonology",
+      "Urology"
+    ],
+    "Surgical Services": [
+      "General Surgery",
+      "Cardiac Surgery",
+      "Orthopedic Surgery",
+      "Neurosurgery",
+      "Plastic Surgery",
+      "Pediatric Surgery",
+      "Obstetric Surgery",
+      "Trauma Surgery"
+    ],
+    "Rehabilitation Services": [
+      "Physical Therapy",
+      "Occupational Therapy",
+      "Speech Therapy",
+      "Cardiac Rehabilitation",
+      "Neurological Rehabilitation"
+    ],
+    "Diagnostic Services": [
+      "Laboratory Tests",
+      "Radiology",
+      "Pathology",
+      "Endoscopy",
+      "ECG",
+      "EEG"
+    ],
+    "Emergency Services": [
+      "Emergency Room (ER)",
+      "Trauma Care",
+      "Intensive Care Unit (ICU)",
+      "Burn Unit"
+    ],
+    "Maternity and Women's Health": [
+      "Obstetrics",
+      "Gynecology",
+      "Family Planning",
+      "Breast Health"
+    ],
+    "Pharmacy Services": [
+      "Prescription Medications",
+      "Over-the-Counter Medications",
+      "Vaccinations",
+      "Pharmaceutical Consultations",
+      "Compounding Pharmacy",
+      "Herbal Medicine"
+    ],
+    "Mental Health Services": [
+      "Counseling",
+      "Psychotherapy",
+      "Addiction Treatment",
+      "Support Groups",
+      "Behavioral Therapy"
+    ],
+    "Alternative Medicine": [
+      "Acupuncture",
+      "Chiropractic Care",
+      "Massage Therapy",
+      "Naturopathy",
+      "Homeopathy"
+    ]
+  }
+};
+
+// Map service types to Google Places types
+const Map<String, String> serviceToPlacesType = {
+  // Core 11 Medical Services
+  "Internal Medicine": "doctor",
+  "Surgery": "hospital",
+  "Orthopedics": "doctor",
+  "Dermatology": "doctor",
+  "Ophthalmology": "doctor",
+  "ENT": "doctor",
+  "Dentistry": "dentist",
+  "Pediatrics": "doctor",
+  "OG/GYN": "doctor",
+  "Psychiatry": "doctor",
+  "Psychosomatic Medicine": "doctor",
+
+  // Legacy service mappings
+  "General Medicine": "doctor",
+  "Emergency Care": "hospital",
+  "Family Medicine": "doctor",
+  "Preventative Medicine": "health",
+  "Health Check-ups": "health",
+  "Urgent Care": "hospital",
+  "Cardiology": "hospital",
+  "Endocrinology": "doctor",
+  "Gastroenterology": "doctor",
+  "Hematology": "doctor",
+  "Nephrology": "doctor",
+  "Neurology": "doctor",
+  "Obstetrics and Gynecology": "doctor",
+  "Rheumatology": "doctor",
+  "Pulmonology": "doctor",
+  "Urology": "doctor",
+  "General Surgery": "hospital",
+  "Cardiac Surgery": "hospital",
+  "Orthopedic Surgery": "hospital",
+  "Neurosurgery": "hospital",
+  "Plastic Surgery": "hospital",
+  "Pediatric Surgery": "hospital",
+  "Obstetric Surgery": "hospital",
+  "Trauma Surgery": "hospital",
+  "Physical Therapy": "physiotherapist",
+  "Occupational Therapy": "physiotherapist",
+  "Speech Therapy": "physiotherapist",
+  "Cardiac Rehabilitation": "physiotherapist",
+  "Neurological Rehabilitation": "physiotherapist",
+  "Laboratory Tests": "hospital",
+  "Radiology": "hospital",
+  "Pathology": "hospital",
+  "Endoscopy": "hospital",
+  "ECG": "hospital",
+  "EEG": "hospital",
+  "Emergency Room (ER)": "hospital",
+  "Trauma Care": "hospital",
+  "Intensive Care Unit (ICU)": "hospital",
+  "Burn Unit": "hospital",
+  "Obstetrics": "doctor",
+  "Gynecology": "doctor",
+  "Family Planning": "health",
+  "Breast Health": "health",
+  "Prescription Medications": "pharmacy",
+  "Over-the-Counter Medications": "pharmacy",
+  "Vaccinations": "pharmacy",
+  "Pharmaceutical Consultations": "pharmacy",
+  "Compounding Pharmacy": "pharmacy",
+  "Herbal Medicine": "pharmacy",
+  "Counseling": "doctor",
+  "Psychotherapy": "doctor",
+  "Addiction Treatment": "hospital",
+  "Support Groups": "health",
+  "Behavioral Therapy": "doctor",
+  "Acupuncture": "health",
+  "Chiropractic Care": "physiotherapist",
+  "Massage Therapy": "spa",
+  "Naturopathy": "health",
+  "Homeopathy": "health",
+};
