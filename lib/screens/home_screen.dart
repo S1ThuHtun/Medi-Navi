@@ -74,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen>
   Future<void> _getCurrentLocation() async {
     if (!mounted) return;
     setState(() => _isLoading = true);
+
     final result = await _placesService.getCurrentLocationWithStatus();
 
     if (!mounted) return;
@@ -255,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFF2E7D32),
         elevation: 0,
         shadowColor: Colors.black.withOpacity(0.05),
         surfaceTintColor: Colors.transparent,
@@ -265,7 +266,10 @@ class _HomeScreenState extends State<HomeScreen>
             SizedBox(
               height: 50,
               width: 50,
-              child: Image.asset('assets/images/MediNavi001.png'),
+              child: Image.asset(
+                'assets/images/medinavi.png',
+                color: Colors.white,
+              ),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -279,7 +283,7 @@ class _HomeScreenState extends State<HomeScreen>
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       letterSpacing: -0.5,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -292,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ? Icons.location_city
                               : Icons.location_on,
                           size: 16,
-                          color: const Color(0xFF2E7D32),
+                          color: Colors.white,
                         ),
                         const SizedBox(width: 4),
                         Expanded(
@@ -300,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen>
                             _getLocationDisplayText(),
                             style: const TextStyle(
                               fontSize: 14,
-                              color: Color(0xFF2E7D32),
+                              color: Colors.white,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -317,7 +321,7 @@ class _HomeScreenState extends State<HomeScreen>
           IconButton(
             icon: Image.asset(
               'assets/images/japan.png',
-              color: const Color(0xFF2E7D32),
+              color: Colors.white,
               width: 40,
               height: 40,
             ),
@@ -348,16 +352,17 @@ class _HomeScreenState extends State<HomeScreen>
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: 11,
+                itemCount: 12,
                 itemBuilder: (context, index) {
                   final services = [
                     'Internal Medicine',
+                    'Pharmacy',
+                    'Dentistry',
                     'Surgery',
                     'Orthopedics',
                     'Dermatology',
                     'Ophthalmology',
                     'ENT',
-                    'Dentistry',
                     'Pediatrics',
                     'OG/GYN',
                     'Psychiatry',

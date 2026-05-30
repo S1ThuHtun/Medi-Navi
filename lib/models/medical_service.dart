@@ -51,7 +51,8 @@ class MedicalService {
       latitude: json['geometry']['location']['lat'] ?? 0.0,
       longitude: json['geometry']['location']['lng'] ?? 0.0,
       address: json['vicinity'] ?? json['formatted_address'] ?? '',
-      distance: 0.0, // Will be calculated
+      distance: (json['distance'] ?? 0.0)
+          .toDouble(), // Load distance from JSON or default to 0.0
       phone: json['formatted_phone_number'] ?? 'N/A',
       rating: (json['rating'] ?? 0.0).toDouble(),
       isOpen: json['opening_hours']?['open_now'] ?? false,

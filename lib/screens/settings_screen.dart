@@ -32,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
           if (user != null)
             Card(
               elevation: 0,
-              color: const Color(0xFF2E7D32).withOpacity(0.1),
+              color: const Color(0xFF2E7D32).withValues(alpha: 0.1),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -66,7 +66,7 @@ class SettingsScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Member',
+                            AppLocalizations.of(context)!.member,
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.grey[600],
@@ -85,10 +85,7 @@ class SettingsScreen extends StatelessWidget {
           // Language Section
           Text(
             AppLocalizations.of(context)!.language,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
           Card(
@@ -111,11 +108,8 @@ class SettingsScreen extends StatelessWidget {
 
           // Account Section
           Text(
-            'Account',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            AppLocalizations.of(context)!.settingsAccount,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
           Card(
@@ -127,8 +121,11 @@ class SettingsScreen extends StatelessWidget {
             child: Column(
               children: [
                 ListTile(
-                  leading: const Icon(Icons.person_outline, color: Color(0xFF2E7D32)),
-                  title: const Text('Profile'),
+                  leading: const Icon(
+                    Icons.person_outline,
+                    color: Color(0xFF2E7D32),
+                  ),
+                  title: Text(AppLocalizations.of(context)!.settingsProfile),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   onTap: () {
                     // TODO: Navigate to profile screen
@@ -136,16 +133,26 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 Divider(height: 1, color: Colors.grey[300]),
                 ListTile(
-                  leading: const Icon(Icons.notifications_outlined, color: Color(0xFF2E7D32)),
-                  title: const Text('Notifications'),
+                  leading: const Icon(
+                    Icons.notifications_outlined,
+                    color: Color(0xFF2E7D32),
+                  ),
+                  title: Text(
+                    AppLocalizations.of(context)!.settingsNotifications,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   onTap: () {
                     // TODO: Navigate to notifications settings
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.security_outlined, color: Color(0xFF2E7D32)),
-                  title: const Text('Privacy & Security'),
+                  leading: const Icon(
+                    Icons.security_outlined,
+                    color: Color(0xFF2E7D32),
+                  ),
+                  title: Text(
+                    AppLocalizations.of(context)!.settingsPrivacySecurity,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   onTap: () {
                     // TODO: Navigate to privacy settings
@@ -159,11 +166,8 @@ class SettingsScreen extends StatelessWidget {
 
           // About Section
           Text(
-            'About',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            AppLocalizations.of(context)!.settingsAbout,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
           Card(
@@ -175,8 +179,13 @@ class SettingsScreen extends StatelessWidget {
             child: Column(
               children: [
                 ListTile(
-                  leading: const Icon(Icons.help_outline, color: Color(0xFF2E7D32)),
-                  title: const Text('Help & Support'),
+                  leading: const Icon(
+                    Icons.help_outline,
+                    color: Color(0xFF2E7D32),
+                  ),
+                  title: Text(
+                    AppLocalizations.of(context)!.settingsHelpSupport,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   onTap: () {
                     // TODO: Navigate to help screen
@@ -184,8 +193,11 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 Divider(height: 1, color: Colors.grey[300]),
                 ListTile(
-                  leading: const Icon(Icons.info_outline, color: Color(0xFF2E7D32)),
-                  title: const Text('About MediNavi'),
+                  leading: const Icon(
+                    Icons.info_outline,
+                    color: Color(0xFF2E7D32),
+                  ),
+                  title: Text(AppLocalizations.of(context)!.settingsAboutApp),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   onTap: () {
                     // TODO: Navigate to about screen
@@ -206,7 +218,9 @@ class SettingsScreen extends StatelessWidget {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text(AppLocalizations.of(context)!.logOut),
-                    content: Text(AppLocalizations.of(context)!.logoutConfirmation),
+                    content: Text(
+                      AppLocalizations.of(context)!.logoutConfirmation,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -235,7 +249,9 @@ class SettingsScreen extends StatelessWidget {
                 await AuthServices().signOut();
                 if (context.mounted) {
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpScreen(),
+                    ),
                     (route) => false,
                   );
                 }

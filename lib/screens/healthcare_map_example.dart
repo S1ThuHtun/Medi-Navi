@@ -1,17 +1,3 @@
-// EXAMPLE: Healthcare Facilities Map for Kobe, Japan
-//
-// This screen demonstrates a complete healthcare facility map using Flutter Map
-// with OpenStreetMap (OSM) data via Overpass Turbo API.
-//
-// Features demonstrated:
-// 1. Custom markers for different healthcare facilities
-// 2. Real-time data from OpenStreetMap via Overpass API
-// 3. Filters for different types of healthcare facilities
-// 4. Custom InfoWindows when tapping markers
-//
-// For complete documentation, see: HEALTHCARE_MAP_GUIDE.md
-//
-
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -23,8 +9,7 @@ class HealthcareMapExample extends StatefulWidget {
   const HealthcareMapExample({super.key});
 
   @override
-  State<HealthcareMapExample> createState() =>
-      _HealthcareMapExampleState();
+  State<HealthcareMapExample> createState() => _HealthcareMapExampleState();
 }
 
 class _HealthcareMapExampleState extends State<HealthcareMapExample> {
@@ -168,8 +153,7 @@ class _HealthcareMapExampleState extends State<HealthcareMapExample> {
             children: [
               // OpenStreetMap Tile Layer
               TileLayer(
-                urlTemplate:
-                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 userAgentPackageName: 'com.example.medinavi',
               ),
 
@@ -220,9 +204,7 @@ class _HealthcareMapExampleState extends State<HealthcareMapExample> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
-                      ),
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
                     SizedBox(height: 16),
                     Text(
@@ -239,10 +221,7 @@ class _HealthcareMapExampleState extends State<HealthcareMapExample> {
             top: 16,
             left: 16,
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -371,10 +350,7 @@ class _HealthcareMapExampleState extends State<HealthcareMapExample> {
                       ),
                       Text(
                         facility.type.toUpperCase(),
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
                       ),
                     ],
                   ),

@@ -51,6 +51,10 @@ dependencies:
   speech_to_text: ^7.0.0
   permission_handler: ^11.3.1
   flutter_dotenv: ^5.2.1
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.9.4
+  audioplayers: ^6.1.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

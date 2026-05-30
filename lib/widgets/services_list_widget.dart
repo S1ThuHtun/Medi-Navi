@@ -29,9 +29,7 @@ class ServicesListWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircularProgressIndicator(
-              color: Color(0xFF2E7D32),
-            ),
+            const CircularProgressIndicator(color: Color(0xFF2E7D32)),
             const SizedBox(height: 16),
             Text(
               AppLocalizations.of(context)!.gettingLocation,
@@ -42,16 +40,14 @@ class ServicesListWidget extends StatelessWidget {
       );
     }
 
-    if (nearbyServices.isEmpty && currentPosition == null && selectedLocation == null) {
+    if (nearbyServices.isEmpty &&
+        currentPosition == null &&
+        selectedLocation == null) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.location_off,
-              size: 64,
-              color: Colors.grey[400],
-            ),
+            Icon(Icons.location_off, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
               AppLocalizations.of(context)!.locationNotAvailable,
@@ -67,10 +63,7 @@ class ServicesListWidget extends StatelessWidget {
               child: Text(
                 AppLocalizations.of(context)!.pullDownToRefresh,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
             ),
             const SizedBox(height: 24),
@@ -81,7 +74,10 @@ class ServicesListWidget extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF2E7D32),
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 12,
+                ),
               ),
             ),
           ],

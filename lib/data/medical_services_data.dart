@@ -6,7 +6,7 @@ const Map<String, dynamic> medicalServicesData = {
       "Family Medicine",
       "Preventative Medicine",
       "Health Check-ups",
-      "Urgent Care"
+      "Urgent Care",
     ],
     "Specialized Services": [
       "Cardiology",
@@ -23,7 +23,7 @@ const Map<String, dynamic> medicalServicesData = {
       "Psychiatry",
       "Rheumatology",
       "Pulmonology",
-      "Urology"
+      "Urology",
     ],
     "Surgical Services": [
       "General Surgery",
@@ -33,14 +33,14 @@ const Map<String, dynamic> medicalServicesData = {
       "Plastic Surgery",
       "Pediatric Surgery",
       "Obstetric Surgery",
-      "Trauma Surgery"
+      "Trauma Surgery",
     ],
     "Rehabilitation Services": [
       "Physical Therapy",
       "Occupational Therapy",
       "Speech Therapy",
       "Cardiac Rehabilitation",
-      "Neurological Rehabilitation"
+      "Neurological Rehabilitation",
     ],
     "Diagnostic Services": [
       "Laboratory Tests",
@@ -48,19 +48,19 @@ const Map<String, dynamic> medicalServicesData = {
       "Pathology",
       "Endoscopy",
       "ECG",
-      "EEG"
+      "EEG",
     ],
     "Emergency Services": [
       "Emergency Room (ER)",
       "Trauma Care",
       "Intensive Care Unit (ICU)",
-      "Burn Unit"
+      "Burn Unit",
     ],
     "Maternity and Women's Health": [
       "Obstetrics",
       "Gynecology",
       "Family Planning",
-      "Breast Health"
+      "Breast Health",
     ],
     "Pharmacy Services": [
       "Prescription Medications",
@@ -68,23 +68,23 @@ const Map<String, dynamic> medicalServicesData = {
       "Vaccinations",
       "Pharmaceutical Consultations",
       "Compounding Pharmacy",
-      "Herbal Medicine"
+      "Herbal Medicine",
     ],
     "Mental Health Services": [
       "Counseling",
       "Psychotherapy",
       "Addiction Treatment",
       "Support Groups",
-      "Behavioral Therapy"
+      "Behavioral Therapy",
     ],
     "Alternative Medicine": [
       "Acupuncture",
       "Chiropractic Care",
       "Massage Therapy",
       "Naturopathy",
-      "Homeopathy"
-    ]
-  }
+      "Homeopathy",
+    ],
+  },
 };
 
 // Map service types to Google Places types
@@ -101,6 +101,7 @@ const Map<String, String> serviceToPlacesType = {
   "OG/GYN": "doctor",
   "Psychiatry": "doctor",
   "Psychosomatic Medicine": "doctor",
+  "Pharmacy": "pharmacy",
 
   // Legacy service mappings
   "General Medicine": "doctor",

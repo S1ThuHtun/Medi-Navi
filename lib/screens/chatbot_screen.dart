@@ -109,10 +109,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           );
         });
       }
-
-      print("Chat history loaded successfully");
     } catch (e) {
-      print("Error loading chat history: $e");
       // Add welcome message if loading fails
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final l10n = AppLocalizations.of(context)!;
@@ -146,8 +143,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
 
       // Save mode
       await prefs.setBool('chatbot_detailed_mode', _isDetailedMode);
-
-      print("Chat history saved successfully");
     } catch (e) {
       print("Error saving chat history: $e");
     }
@@ -242,9 +237,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       await _flutterTts.setSpeechRate(0.5);
       await _flutterTts.setVolume(1.0);
       await _flutterTts.setPitch(1.0);
-      print("TTS initialized successfully");
     } catch (e) {
-      print("Error initializing TTS: $e");
       setState(() => _ttsEnabled = false);
     }
   }
@@ -255,7 +248,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       _speechEnabled = await _speech.initialize(
         onError: (error) => print('Speech error: $error'),
         onStatus: (status) {
-          print('Speech status: $status');
           if (status == 'done' && _isListening) {
             _stopListening();
           }
@@ -361,7 +353,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
         openAppSettings();
       }
     } catch (e) {
-      print("ERROR starting speech recognition: $e");
       setState(() => _isListening = false);
       final l10n = AppLocalizations.of(context)!;
       await _speak(l10n.voiceInputError);
@@ -381,7 +372,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
         askGemini();
       }
     } catch (e) {
-      print("Error stopping speech: $e");
       setState(() => _isListening = false);
     }
   }
@@ -671,7 +661,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
         languageInstruction = "Respond in Japanese (日本語で返答してください).";
         emergencySection = '''
 
-🚨 **緊急連絡先** (常に表示)
+**緊急連絡先** (常に表示)
 - 救急車・消防: 119
 - 警察: 110
 - いのちの電話: 0570-783-556

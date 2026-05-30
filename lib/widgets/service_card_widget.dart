@@ -53,7 +53,10 @@ class ServiceCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      getLocalizedServiceName(service.name, AppLocalizations.of(context)!),
+                      getLocalizedServiceName(
+                        service.name,
+                        AppLocalizations.of(context)!,
+                      ),
                       style: const TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -64,10 +67,7 @@ class ServiceCardWidget extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       service.address,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 13, color: Colors.grey[600]),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -81,7 +81,9 @@ class ServiceCardWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          AppLocalizations.of(context)!.kmAway(service.distance.toStringAsFixed(1)),
+                          AppLocalizations.of(
+                            context,
+                          )!.kmAway(service.distance.toStringAsFixed(1)),
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey[600],
@@ -89,11 +91,7 @@ class ServiceCardWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 12),
                         if (service.rating > 0) ...[
-                          const Icon(
-                            Icons.star,
-                            size: 16,
-                            color: Colors.amber,
-                          ),
+                          const Icon(Icons.star, size: 16, color: Colors.amber),
                           const SizedBox(width: 4),
                           Text(
                             service.rating.toStringAsFixed(1),
@@ -116,7 +114,9 @@ class ServiceCardWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
-                            service.isOpen ? AppLocalizations.of(context)!.open : AppLocalizations.of(context)!.closed,
+                            service.isOpen
+                                ? AppLocalizations.of(context)!.open
+                                : AppLocalizations.of(context)!.closed,
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
@@ -131,11 +131,7 @@ class ServiceCardWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Colors.grey,
-              ),
+              const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
             ],
           ),
         ),

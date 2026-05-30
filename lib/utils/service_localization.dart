@@ -15,6 +15,7 @@ String getLocalizedServiceName(String serviceName, AppLocalizations localization
     'OG/GYN': localizations.serviceOBGYN,
     'Psychiatry': localizations.servicePsychiatry,
     'Psychosomatic Medicine': localizations.servicePsychosomaticMedicine,
+    'Pharmacy': localizations.servicePharmacy,
   };
   
   return localizationMap[serviceName] ?? serviceName;

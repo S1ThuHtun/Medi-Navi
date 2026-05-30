@@ -4,10 +4,7 @@ import '../l10n/app_localizations.dart';
 class ResultsHeaderWidget extends StatelessWidget {
   final int serviceCount;
 
-  const ResultsHeaderWidget({
-    super.key,
-    required this.serviceCount,
-  });
+  const ResultsHeaderWidget({super.key, required this.serviceCount});
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +15,11 @@ class ResultsHeaderWidget extends StatelessWidget {
         children: [
           Text(
             AppLocalizations.of(context)!.foundNearby(serviceCount),
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           Text(
             AppLocalizations.of(context)!.within5km,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[600],
-            ),
+            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
           ),
         ],
       ),
